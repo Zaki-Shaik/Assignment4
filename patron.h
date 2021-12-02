@@ -43,6 +43,8 @@ public:
     // Adds a Command instance to History of patron
     void addCommandToHistory
     (const Command& command, LibraryItem* libraryitem);
+    void addItemToCheckedOut
+    (const Command& command, LibraryItem* libraryitem);
     // implement a method in command that returns a string 
 Patron &operator=(const Patron& t);
 bool operator<(const Patron& t) const;
@@ -54,7 +56,7 @@ bool operator<(const string) const;
     //int getSize() const;
     void getHistory() const;
     void swap(Patron&);
-    void deletePatron();
+    
 
 private:
     string id;          // Patron's 4 numeric chars identifier
@@ -64,9 +66,12 @@ private:
 vector<string> CommandHistory;
 // remember that vectors can return size 
 LibraryItem** ItemHistory;
+LibraryItem** CheckedOutBooks;
 
 int currentIndexOfItemHistory;
 int sizeOfItemHistory;
+int currentIndexOfCheckedOutBooks;
+int sizeOfCheckedOutBooks;
 
 
 

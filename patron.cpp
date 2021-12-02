@@ -9,18 +9,23 @@ ItemHistory =new LibraryItem* [20];
 sizeOfItemHistory = 20;
 currentIndexOfItemHistory = 0;
 
+CheckedOutBooks = new LibraryItem*[20];
+currentIndexOfCheckedOutBooks = 0;
+sizeOfCheckedOutBooks = 20;
     
 }
 
 Patron::Patron(const Patron& pat)
 {
     CommandHistory = pat.CommandHistory;
-    sizeOfItemHistory = pat.sizeOfItemHistory;
-    currentIndexOfItemHistory = pat.currentIndexOfItemHistory;
+
     id = pat.id;          // Patron's 4 numeric chars identifier
     firstName = pat.firstName;   // Patron's first name
     lastName = pat.lastName;
    // ItemHistory = pat.ItemHistory;
+
+    sizeOfItemHistory = pat.sizeOfItemHistory;
+    currentIndexOfItemHistory = pat.currentIndexOfItemHistory;   
    ItemHistory = new LibraryItem*[sizeOfItemHistory];
     
     for (int i = 0; i < pat.currentIndexOfItemHistory; i++)
@@ -29,6 +34,16 @@ Patron::Patron(const Patron& pat)
     ItemHistory[i] = pat.ItemHistory[i];
     
     }
+sizeOfCheckedOutBooks = pat.sizeOfCheckedOutBooks;
+currentIndexOfCheckedOutBooks = pat.currentIndexOfCheckedOutBooks;
+CheckedOutBooks = new LibraryItem*[sizeOfCheckedOutBooks];
+    for (int i = 0; i < pat.currentIndexOfCheckedOutBooks; i++)
+    {
+
+    CheckedOutBooks[i] = pat.CheckedOutBooks[i];
+    
+    }
+
     
 }
 
@@ -53,12 +68,44 @@ getline(file, firstName);
 return true;
 }
 
+void Patron::addItemToCheckedOut
+    (const Command& command, LibraryItem* libraryitem){
+if (currentIndexOfCheckedOutBooks == sizeOfCheckedOutBooks){
+LibraryItem** newArray = new LibraryItem* [sizeOfCheckedOutBooks + 10];
+sizeOfCheckedOutBooks = sizeOfCheckedOutBooks + 10;
+for (int i = 0; i < currentIndexOfCheckedOutBooks; i++){
+
+    newArray[i] = CheckedOutBooks[i];
+    CheckedOutBooks[i] = nullptr;
+}
+// no need to use a for loop to delete each element since
+// all of them are transfered and nulled.
+delete[] CheckedOutBooks;
+CheckedOutBooks = newArray;
+
+CheckedOutBooks[currentIndexOfCheckedOutBooks] = libraryitem;
+currentIndexOfCheckedOutBooks++;
+// insert it
+// size++
+
+}
+
+else {
+// insert it
+// size++
+CheckedOutBooks[currentIndexOfCheckedOutBooks] = libraryitem;
+currentIndexOfCheckedOutBooks++;
+}
+
+
+    }
+
 void Patron::addCommandToHistory
     (const Command& command,  LibraryItem* libraryitem) {
 
 CommandHistory.push_back(command.getString());
 
-if (currentIndexOfItemHistory = sizeOfItemHistory){
+if (currentIndexOfItemHistory == sizeOfItemHistory){
 LibraryItem** newArray = new LibraryItem* [sizeOfItemHistory + 10];
 sizeOfItemHistory = sizeOfItemHistory + 10;
 for (int i = 0; i < currentIndexOfItemHistory; i++){
@@ -85,25 +132,27 @@ ItemHistory[currentIndexOfItemHistory] = libraryitem;
 currentIndexOfItemHistory++;
 }
 
+
+
     }
 
 Patron::~Patron()
 {
  for (int i = 0; i< sizeOfItemHistory; i++){
     ItemHistory[i] = nullptr;
+
 }
+for (int i = 0; i< sizeOfCheckedOutBooks; i++){
+    CheckedOutBooks[i] = nullptr;
+
+
+    }
+
     delete[] ItemHistory;   
-    
+    delete[] CheckedOutBooks;
 }
 
-// this wil be called by library on each of the set elements
-void Patron::deletePatron(){
 
-
-
-
-
-}
 
 // int Patron::getSize() const
 // {
@@ -163,6 +212,15 @@ void Patron::swap(Patron& copy)
     {
 
     ItemHistory[i] = copy.ItemHistory[i];
+    
+    }
+    sizeOfCheckedOutBooks = copy.sizeOfCheckedOutBooks;
+currentIndexOfCheckedOutBooks = copy.currentIndexOfCheckedOutBooks;
+CheckedOutBooks = new LibraryItem*[sizeOfCheckedOutBooks];
+    for (int i = 0; i < copy.currentIndexOfCheckedOutBooks; i++)
+    {
+
+    CheckedOutBooks[i] = copy.CheckedOutBooks[i];
     
     }
     
