@@ -23,7 +23,7 @@ int main(){
     ifstream myfile ("data4books.txt");
     ifstream myFile2("data4patrons.txt");
     a.initializeLibraryItems(myfile);
-    a.processPatrons(myFile2);
+    a.processPatrons(myFile2); // processes the patrons from the data file
     cout<< a;
     cout<<endl;
     return 0;
