@@ -111,7 +111,8 @@ Library::~Library(){
 }    // store object
     // end loop
 
- void Library::processCommands(ifstream& file){
+ void Library::processCommands(ifstream& file)
+ {
 /* pseudo code for command
 // read first command and store it in a char
 // check if its valid
@@ -138,6 +139,29 @@ Command * temp;
         file.get();
         temp = commandObject->createCommand(hash(command));
 
+
+        // read 4 digit number string, if not valid call getline()
+        string IdNumber;
+getline(file, IdNumber, ' ');
+
+/*
+for (std::set<Patron>::iterator it=patronList.begin(); it!=patronList.end(); ++it)
+    {
+           std::cout << ' ';
+           it->getHistory();
+    }
+
+*/
+Patron a;
+a.setId(IdNumber);
+std::set<Patron>::iterator it;
+it = patronList.find(a);
+
+if (it == patronList.end()) { // it doesnt exist
+string clearLine;
+getline(file, clearLine);
+
+}
         // create a library item and find it in the bintree
         // LibraryItem item;
 

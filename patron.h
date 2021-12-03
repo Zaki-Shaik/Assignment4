@@ -50,13 +50,15 @@ void returnBook(const Command& command, LibraryItem* libraryitem);
 Patron &operator=(const Patron& t);
 bool operator<(const Patron& t) const;
 
-bool operator<(const string) const;    
+//bool operator<(const string&) const;
+//bool operator==(const string&) const;
 
     // Gets 
     //History getHistory();
     //int getSize() const;
     void getHistory() const;
     void swap(Patron&);
+    void setId(string newID);
     
 
 private:

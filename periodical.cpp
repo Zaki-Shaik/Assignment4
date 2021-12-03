@@ -38,7 +38,20 @@ newPeriodical->MaxCopies = 1;
 }
 
 bool Periodical::setData2(ifstream& file){
+    file.get();
+    string YearOfPeriodical;
+    getline(file, YearOfPeriodical, ' ');
+    ArrayOfParameters[2] = YearOfPeriodical;
 
+    string MonthOfPeriodical;
+    getline(file, MonthOfPeriodical, ' ');
+    ArrayOfParameters[1] = MonthOfPeriodical;
+
+    string TitleOfPeriodical;
+    getline(file, TitleOfPeriodical);
+    ArrayOfParameters[0] = TitleOfPeriodical;
+ initialize = true;
+    return true;
 
 
 }

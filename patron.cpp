@@ -128,6 +128,12 @@ currentIndexOfCheckedOutBooks++;
 
     }
 
+
+void Patron::setId(string newID)
+{
+    id = newID;
+}
+
 void Patron::addCommandToHistory
     (const Command& command,  LibraryItem* libraryitem) {
 
@@ -163,6 +169,8 @@ currentIndexOfItemHistory++;
 
 
     }
+
+
 
 Patron::~Patron()
 {
@@ -211,12 +219,7 @@ bool Patron::operator<(const Patron& t) const{
     return (id < t.id);
 }
 
-// assumes string passed is 4 digit id
-bool Patron::operator<(const string idNumber) const{
 
-return (idNumber < id);
-    
-}
 
 Patron & Patron::operator=(const Patron& t)
 {
@@ -253,3 +256,4 @@ CheckedOutBooks = new LibraryItem*[sizeOfCheckedOutBooks];
     }
     
 }
+
