@@ -45,12 +45,12 @@ private:
    // int hash(char ch) const { return ch-'A'; } // Hash function with no 
                                                //collisions
 
+
+public:
     Command *createCommand(int hashedChar); // Creates Command instances by 
     
     bool checkValid(int hashedChar); // checks if command char is valid
     // invoking createCommand method on instances stored by objFactory array
-
-public:
     CommandFactory();   // Default class constructor
     ~CommandFactory();  // Class destructor
 

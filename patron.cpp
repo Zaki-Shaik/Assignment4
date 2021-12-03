@@ -14,6 +14,34 @@ currentIndexOfCheckedOutBooks = 0;
 sizeOfCheckedOutBooks = 20;
     
 }
+void Patron::returnBook(const Command& command, LibraryItem* libraryitem){
+// dereference library items to compare them with ==
+for (int i =0; i < currentIndexOfCheckedOutBooks; i++){
+if (*libraryitem == *CheckedOutBooks[i]){
+// 1) swap it with the currentindex    
+// book to be returned
+LibraryItem* currentPtr = CheckedOutBooks[i];
+// set current index book to end
+CheckedOutBooks[i] = CheckedOutBooks[currentIndexOfCheckedOutBooks];
+// set end to nullptr
+CheckedOutBooks[currentIndexOfCheckedOutBooks] = nullptr;
+
+// CheckedOutBooks[currentIndexOfCheckedOutBooks] = currentPtr;
+// CheckedOutBooks[currentIndexOfCheckedOutBooks] -> 
+// CheckedOutBooks[currentIndexOfCheckedOutBooks]
+
+// 2) increment the amount of copies
+currentPtr->setCopiesLeft(libraryitem->getCopiesLeft() + 1);
+// 3) decrement the current index
+currentIndexOfCheckedOutBooks--;
+    return;
+}
+
+}
+
+cout<<*libraryitem<<" not returned";
+
+}
 
 Patron::Patron(const Patron& pat)
 {

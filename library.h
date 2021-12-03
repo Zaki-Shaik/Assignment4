@@ -8,6 +8,7 @@
 #include "libraryitemfactory.h"
 #include "libraryitem.h"
 #include "patron.h"
+#include "commandfactory.h"
 using namespace std;
 
 //---------------------------------------------------------------------------
@@ -38,6 +39,7 @@ private:
     // used used in a Factory pattern
 
     LibraryItemFactory * mediaObject;
+    CommandFactory * commandObject;
     set<Patron> patronList;
     
 

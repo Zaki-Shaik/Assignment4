@@ -77,6 +77,8 @@ public:
 // Preconditions: need to pass a NodeData Object
 // Postconditions: returns a boolean if insertion of object was successful
     bool insert(LibraryItem*&);
+
+ //   bool findLibraryItem(LibraryItem*&) const;
 //----------------------------------------------------------------------------
 // retrieve
 // Preconditions: need to pass a NodeData object and a NodeData 

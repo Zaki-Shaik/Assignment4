@@ -53,6 +53,7 @@ class LibraryItem
         virtual void makeEmpty();
         virtual LibraryItem* createIt() const = 0;
         virtual bool setData(ifstream& file) = 0;
+        virtual bool setData2(ifstream& file) = 0;
         //http://courses.washington.edu/css343/zander/Labs/Book/output.txt
         // checks if initialize is true -> output contents of Array
         // Output amount of copies left at the start

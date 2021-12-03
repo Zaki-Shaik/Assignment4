@@ -46,6 +46,20 @@ return true;
 
 }
 
+bool Book::setData2(ifstream& file)
+{
+    string data; 
+    for(int i = 0; i< sizeOfArrayOfSortingPrio - 1; i++ )
+    {   
+        file.get();
+        getline(file, data, ',');
+        ArrayOfParameters[i] = data;
+       
+    }
+    getline(file, data); // this goes to the next line
+    return true;
+}
+
 
 /*
 LibraryItem* Book::createIt() const

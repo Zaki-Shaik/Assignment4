@@ -37,6 +37,12 @@ newPeriodical->MaxCopies = 1;
     return newPeriodical;
 }
 
+bool Periodical::setData2(ifstream& file){
+
+
+
+}
+
 //set data should set initialize to true after initializing everything
 bool Periodical::setData(ifstream& file) 
 {

@@ -29,6 +29,7 @@ class Command;
 class Patron
 {
 
+
 public:
     //Patron();   // Default class constructor
     // either takes a string 
@@ -39,7 +40,7 @@ public:
 
     ~Patron();  // Class destructor
     Patron(const Patron&);
-
+void returnBook(const Command& command, LibraryItem* libraryitem);
     // Adds a Command instance to History of patron
     void addCommandToHistory
     (const Command& command, LibraryItem* libraryitem);

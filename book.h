@@ -33,6 +33,7 @@ public:
    //virtual ~Book(); // Class destructor
   // virtual LibraryItem* createIt() const;
    virtual bool setData(ifstream& file);
+   virtual bool setData2(ifstream& file);
 protected:
    
 

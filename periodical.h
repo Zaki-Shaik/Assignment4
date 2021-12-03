@@ -38,7 +38,7 @@ public:
 
     // Extracts data attributes from line of text
     virtual bool setData(ifstream& file);
-
+    virtual bool setData2(ifstream& file);
     // Extracts data attributes from line of text containing a patron's 
     // command (e.g. Checkout, Return)
     //virtual void setDataFromCommand(string line) const;

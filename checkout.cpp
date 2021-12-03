@@ -17,6 +17,7 @@ bool Checkout::execute() const
     int copiesLeft = item->getCopiesLeft();
     if(copiesLeft > 0)
     {
+        patron->addItemToCheckedOut(*this, item);
         item->setCopiesLeft(copiesLeft - 1);
         patron->addCommandToHistory(*this, item);
         return true;

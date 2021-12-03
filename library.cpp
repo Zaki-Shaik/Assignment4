@@ -102,7 +102,8 @@ Library::~Library(){
     // also have to delete the libraryfactoryitem
     delete  mediaObject;
     mediaObject = nullptr;
-
+    delete commandObject;
+    commandObject = nullptr;
  
     
 
@@ -117,12 +118,38 @@ Library::~Library(){
 // use set::find with the overloaded string comparison operator
 
 
-
+    
 
 
 
 
 */
+char command;
+Command * temp;
+    for(;;)
+    {
+        if(file.eof())
+        {
+            break;
+        }
+
+        file >> command;
+        // add command valid checker here
+        file.get();
+        temp = commandObject->createCommand(hash(command));
+
+        // create a library item and find it in the bintree
+        // LibraryItem item;
+
+        //          // and use that to get a pointer to the real library item
+
+        // temp->initialize();
+        // temp->execute();
+
+        
+    }
+
+
  }
 
 ostream & operator<<(ostream & out, const Library &item)

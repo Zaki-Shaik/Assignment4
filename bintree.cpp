@@ -193,6 +193,7 @@ bool BinTree::operator!=(const BinTree & rTree) const
 }
 
 
+
 //----------------------------------------------------------------------------
 // insert
 // Preconditions: need to pass a NodeData Object
