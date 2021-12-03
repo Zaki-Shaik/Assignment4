@@ -111,68 +111,68 @@ Library::~Library(){
 }    // store object
     // end loop
 
- void Library::processCommands(ifstream& file)
- {
-/* pseudo code for command
-// read first command and store it in a char
-// check if its valid
-// use set::find with the overloaded string comparison operator
+ void Library::processCommands(ifstream & file) {
+     /* pseudo code for command
+     // read first command and store it in a char
+     // check if its valid
+     // use set::find with the overloaded string comparison operator
+     */
+     char command;
+     Command * temp;
+     for (;;) {
+         if (file.eof()) {
+             break;
+         }
+
+         file >> command;
+         // add command valid checker here
+         if (commandObject -> checkValid(hash(command))) {
+             // THIS INTO ELSE
+             file.get();
+             temp = commandObject -> createCommand(hash(command));
+
+             // read 4 digit number string, if not valid call getline()
+             string IdNumber;
+             getline(file, IdNumber, ' ');
+
+             /*
+             for (std::set<Patron>::iterator it=patronList.begin(); it!=patronList.end(); ++it)
+                 {
+                        std::cout << ' ';
+                        it->getHistory();
+                 }
+
+             */
+             Patron a;
+             a.setId(IdNumber);
+             std::set < Patron > ::iterator it;
+             it = patronList.find(a);
+
+             if (it == patronList.end()) { // it doesnt exist
+                 string clearLine;
+                 getline(file, clearLine);
+
+             } else {
+                //Patron* PatronInSet = &(*it);
 
 
-    
+             }
+             // create a library item and find it in the bintree
+             // LibraryItem item;
 
+             //          // and use that to get a pointer to the real library item
 
+             // temp->initialize();
+             // temp->execute();
+             // THIS INTO ELSE
 
+         } else {
+             string clear;
+             getline(file, clear);
 
-*/
-char command;
-Command * temp;
-    for(;;)
-    {
-        if(file.eof())
-        {
-            break;
-        }
+         }
 
-        file >> command;
-        // add command valid checker here
-        file.get();
-        temp = commandObject->createCommand(hash(command));
-
-
-        // read 4 digit number string, if not valid call getline()
-        string IdNumber;
-getline(file, IdNumber, ' ');
-
-/*
-for (std::set<Patron>::iterator it=patronList.begin(); it!=patronList.end(); ++it)
-    {
-           std::cout << ' ';
-           it->getHistory();
-    }
-
-*/
-Patron a;
-a.setId(IdNumber);
-std::set<Patron>::iterator it;
-it = patronList.find(a);
-
-if (it == patronList.end()) { // it doesnt exist
-string clearLine;
-getline(file, clearLine);
-
-}
-        // create a library item and find it in the bintree
-        // LibraryItem item;
-
-        //          // and use that to get a pointer to the real library item
-
-        // temp->initialize();
-        // temp->execute();
-
-        
-    }
-
+     }
 
  }
 
