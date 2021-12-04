@@ -137,7 +137,8 @@ Library::~Library(){
              char checkEOL;
 
              checkEOL = file.get();
-             cout<<command<<endl;
+             cout<<"COMMAND: "<<command<<endl;
+             cout<<"CHECK EOL"<<checkEOL<<"SPACE"<<endl;
              //cout << checkEOL << endl;
              if (checkEOL == '\n' || file.eof()) {
                  cout<<"QWEQWEQWEQWE"<<endl;
@@ -151,27 +152,49 @@ Library::~Library(){
 
              
              string IdNumber;
-             getline(file, IdNumber, ' ');
-             
+             file>>IdNumber;
+             cout<<"IdNumber: "<< IdNumber<<endl;
             // first check IDnumberchar length
             // then check each index of string to [3] using isdigit()
+            
              if ( 
                  (IdNumber.size() == 4) &&
              isdigit(IdNumber[0]) &&
              isdigit(IdNumber[1]) &&
              isdigit(IdNumber[2]) &&
              isdigit(IdNumber[3])
-             // && patronList.find(IdNumber)->first == IdNumber           
+              && patronList.find(IdNumber)->first == IdNumber           
               ) { // string is valid
-              cout<<"here2"<<endl;
+            
+char EOLsecondCheck;
+ EOLsecondCheck = file.get();
+              if (EOLsecondCheck == '\n' || file.eof()) {
+                 std::map<string, Patron>::iterator findIt;
+findIt = patronList.find(IdNumber);
+
+                 if (findIt != patronList.end()){ // valid
+currentPatron = &findIt->second;
+                 temp = commandObject->createCommand(hash(command));
+                 temp->initialize(currentPatron, currentMediaObj);
+                 temp->execute();
+                 
+                continue;
+
+                 } else{
+
+ continue;
+                 }
+                
+                               // read 4 digit number string, if not valid call getline()
+             }
              char typeOfBook;
-             file >> typeOfBook;
+             typeOfBook = file.get();
              // will use type of book if the next char is valid
              if( (hash(typeOfBook) < sizeOfLibraryCollection) &&
               libraryCollectionFactory[hash(typeOfBook)] != nullptr){
             file.get();
             char TypeOfCopy;
-            file>>TypeOfCopy;
+            TypeOfCopy = file.get();
             std::set<char>::iterator it;
             it = TypeOfMedia.find(TypeOfCopy);
             
@@ -180,10 +203,10 @@ Library::~Library(){
             // need to delete the copy that factory makes after finding
             // its duplicate in bintree
             if (it != TypeOfMedia.end()) {
-                cout<<"here3"<<endl;
+              
                 // CALLED create item here
                LibraryItem* tempCopy = mediaObject->createItem(hash(typeOfBook));
-               tempCopy->setData2(file);
+               tempCopy->setData2(file); // check how this impacts set line
                  //cout << "tempcopy"<<*tempCopy << endl;
                LibraryItem* findCopy;
                
@@ -198,6 +221,7 @@ Library::~Library(){
                findIt = patronList.find(IdNumber);
                if (findIt != patronList.end()){
                    currentPatron = &findIt->second;
+
                    // patron object and library item are all valid                   
                 temp = commandObject -> createCommand(hash(command));
                 temp->initialize(currentPatron, findCopy);
@@ -207,15 +231,15 @@ Library::~Library(){
                }
                else{
                    delete tempCopy;
-             string clear;
-             getline(file, clear); 
+            // string clear;
+             //getline(file, clear); 
 
                }
                }
                else{
                     delete tempCopy;
-             string clear;
-             getline(file, clear);  
+            // string clear;
+            // getline(file, clear);  
 
                }
                         
@@ -233,7 +257,8 @@ Library::~Library(){
              }
 
              }
-              else{
+              else{ //here
+                 
              string clear;
              getline(file, clear);
 

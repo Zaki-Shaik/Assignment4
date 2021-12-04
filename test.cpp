@@ -26,7 +26,7 @@ int main(){
     a.initializeLibraryItems(myfile);
     a.processPatrons(myFile2); // processes the patrons from the data file
     a.processCommands(myfile3);
-    cout<< a;
+    //cout<< a;
     cout<<endl;
     return 0;
 }

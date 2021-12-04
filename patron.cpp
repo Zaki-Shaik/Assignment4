@@ -213,7 +213,7 @@ void Patron::getHistory() const
         }
         else
         {
-            cout<< CommandHistory.at(i) << ItemHistory[i];
+            cout<< CommandHistory.at(i) << "   " << *ItemHistory[i] << endl;
         }
     }
    

@@ -55,13 +55,10 @@ bool Book::setData2(ifstream& file)
         
         getline(file, data, ',');
         //cout<<"data is "<<data<<endl;
-        ArrayOfParameters[i] = data;
+        *ArrayOfSortingPrio[i] = data;
        
     }
-    for (int i = sizeOfArrayOfSortingPrio; i< sizeOfArrayOfParameters-1; i++){
-ArrayOfParameters[i] = "";
 
-    }
     getline(file, data); // this goes to the next line
     return true;
 }
