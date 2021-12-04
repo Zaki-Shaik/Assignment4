@@ -59,7 +59,7 @@ bool operator<(const Patron& t) const;
     void getHistory() const;
     void swap(Patron&);
     void setId(string newID);
-    
+    string getId();
 
 private:
     string id;          // Patron's 4 numeric chars identifier

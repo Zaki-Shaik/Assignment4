@@ -4,7 +4,8 @@ Library::Library()
 {
     sizeOfLibraryCollection = 16;
     libraryCollectionFactory = new BinTree* [16];
-    
+    // inserting hardCopy as types of media.
+    TypeOfMedia.insert('H');
 
     for (int i = 0; i < 16; i++)
     {
@@ -23,7 +24,7 @@ Library::Library()
 // default factory ctor is designed for this
 
     mediaObject = new LibraryItemFactory;
-
+commandObject = new CommandFactory;
 
 /*
 HashTable[2] = new ChildrenBook;
@@ -119,41 +120,128 @@ Library::~Library(){
      */
      char command;
      Command * temp;
+     Patron* currentPatron;
+     LibraryItem* currentMediaObj;
+  //   bool commmandNotFinished = true;
+     // if u create a command object with valid parameters, then set this to false
+     // check if this is true at the start of every if statement like this: commandNotFinished&&
      for (;;) {
          if (file.eof()) {
              break;
          }
 
          file >> command;
-         // add command valid checker here
+        cout<<"here1"<<endl;
          if (commandObject -> checkValid(hash(command))) {
              // THIS INTO ELSE
-             file.get();
-             temp = commandObject -> createCommand(hash(command));
+             char checkEOL;
 
-             // read 4 digit number string, if not valid call getline()
+             checkEOL = file.get();
+             cout<<command<<endl;
+             //cout << checkEOL << endl;
+             if (checkEOL == '\n' || file.eof()) {
+                 cout<<"QWEQWEQWEQWE"<<endl;
+                 temp = commandObject->createCommand(hash(command));
+                 temp->initialize(currentPatron, currentMediaObj);
+                 temp->execute();
+                 
+                continue;
+                               // read 4 digit number string, if not valid call getline()
+             }
+
+             
              string IdNumber;
              getline(file, IdNumber, ' ');
+             
+            // first check IDnumberchar length
+            // then check each index of string to [3] using isdigit()
+             if ( 
+                 (IdNumber.size() == 4) &&
+             isdigit(IdNumber[0]) &&
+             isdigit(IdNumber[1]) &&
+             isdigit(IdNumber[2]) &&
+             isdigit(IdNumber[3])
+             // && patronList.find(IdNumber)->first == IdNumber           
+              ) { // string is valid
+              cout<<"here2"<<endl;
+             char typeOfBook;
+             file >> typeOfBook;
+             // will use type of book if the next char is valid
+             if( (hash(typeOfBook) < sizeOfLibraryCollection) &&
+              libraryCollectionFactory[hash(typeOfBook)] != nullptr){
+            file.get();
+            char TypeOfCopy;
+            file>>TypeOfCopy;
+            std::set<char>::iterator it;
+            it = TypeOfMedia.find(TypeOfCopy);
+            
+            // have checked booktype is valid
+            // make sure we can use this copyt to find the tree
+            // need to delete the copy that factory makes after finding
+            // its duplicate in bintree
+            if (it != TypeOfMedia.end()) {
+                cout<<"here3"<<endl;
+                // CALLED create item here
+               LibraryItem* tempCopy = mediaObject->createItem(hash(typeOfBook));
+               tempCopy->setData2(file);
+                 //cout << "tempcopy"<<*tempCopy << endl;
+               LibraryItem* findCopy;
+               
+               libraryCollectionFactory[hash(typeOfBook)]->retrieve(*tempCopy, findCopy);
+                //cout << findCopy << endl;
+               if (findCopy != nullptr){ // copy is found and stored in findCopy, so delete tempCopy
+                cout << "exec" << endl; 
+               delete tempCopy;
+               
+               // string IdNumber;
+               std::map<string, Patron>::iterator findIt;
+               findIt = patronList.find(IdNumber);
+               if (findIt != patronList.end()){
+                   currentPatron = &findIt->second;
+                   // patron object and library item are all valid                   
+                temp = commandObject -> createCommand(hash(command));
+                temp->initialize(currentPatron, findCopy);
+                temp->execute();               
 
-             /*
-             for (std::set<Patron>::iterator it=patronList.begin(); it!=patronList.end(); ++it)
-                 {
-                        std::cout << ' ';
-                        it->getHistory();
-                 }
 
-             */
-             Patron a;
-             a.setId(IdNumber);
-             std::set < Patron > ::iterator it;
-             it = patronList.find(a);
+               }
+               else{
+                   delete tempCopy;
+             string clear;
+             getline(file, clear); 
 
-             if (it == patronList.end()) { // it doesnt exist
-                 string clearLine;
-                 getline(file, clearLine);
+               }
+               }
+               else{
+                    delete tempCopy;
+             string clear;
+             getline(file, clear);  
 
+               }
+                        
+
+
+            }
+            else{
+            string clear;
+             getline(file, clear);  
+            }
+             }
+             else{
+             string clear;
+             getline(file, clear);                 
+             }
+
+             }
+              else{
+             string clear;
+             getline(file, clear);
+
+              }
+                  
              } else {
-                //Patron* PatronInSet = &(*it);
+                  string clear;
+             getline(file, clear);
 
 
              }
@@ -166,15 +254,11 @@ Library::~Library(){
              // temp->execute();
              // THIS INTO ELSE
 
-         } else {
-             string clear;
-             getline(file, clear);
-
-         }
+         } 
 
      }
 
- }
+ 
 
 ostream & operator<<(ostream & out, const Library &item)
 {
@@ -202,7 +286,9 @@ void Library::processPatrons(ifstream& file)
         }  
         if(temp.constructPatron(file))
         {
-            patronList.insert(temp);
+            patronList.insert(pair<string,Patron>(temp.getId(), temp));
+            //temp.getHistory();
+          //  patronList.insert(temp);
             //temp = new Patron();
         }
         else
@@ -213,10 +299,17 @@ void Library::processPatrons(ifstream& file)
        
    }
 
+    // std::map<string,Patron>::iterator it = patronList.begin();
+    // for(it=patronList.begin(); it!=patronList.end(); ++it)
+    // {
+    //     it->second.getHistory();
+
+    // }
+  /*  
     for (std::set<Patron>::iterator it=patronList.begin(); it!=patronList.end(); ++it)
     {
            std::cout << ' ';
            it->getHistory();
     }
- 
+ */
 }

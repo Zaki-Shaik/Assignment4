@@ -41,16 +41,21 @@ bool Periodical::setData2(ifstream& file){
     file.get();
     string YearOfPeriodical;
     getline(file, YearOfPeriodical, ' ');
+    cout<<"Year: "<<YearOfPeriodical<<endl;
     ArrayOfParameters[2] = YearOfPeriodical;
 
     string MonthOfPeriodical;
     getline(file, MonthOfPeriodical, ' ');
+    cout<<"Month: "<<MonthOfPeriodical<<endl;
     ArrayOfParameters[1] = MonthOfPeriodical;
 
     string TitleOfPeriodical;
-    getline(file, TitleOfPeriodical);
+    getline(file, TitleOfPeriodical, ',');
+    cout<<"Title: "<<TitleOfPeriodical<<endl;
     ArrayOfParameters[0] = TitleOfPeriodical;
  initialize = true;
+ string clearLine;
+ getline(file, clearLine);
     return true;
 
 

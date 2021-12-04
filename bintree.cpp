@@ -283,23 +283,17 @@ LibraryItem*& rPtr) const
     }
     else if(*ptr->data > data) // if less step into the left
     {
-        retrieveHelper(ptr->left, data, rPtr);
+        return retrieveHelper(ptr->left, data, rPtr);
 
     }
 
-    else if(*ptr->data < data) // if greater step into the right
-    {
-        retrieveHelper(ptr->right, data, rPtr);
+
+       return retrieveHelper(ptr->right, data, rPtr);
             
-    }
-    else
-    {
+ 
 
-        return false;
 
-    }
-
-    return false;
+   
     
 }
 

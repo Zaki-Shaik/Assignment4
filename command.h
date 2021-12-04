@@ -7,7 +7,7 @@
 #include <string>  
 #include "patron.h"
 #include "libraryitem.h"
-
+//#include "library.h"
 using namespace std;
 
 //---------------------------------------------------------------------------
@@ -29,6 +29,7 @@ using namespace std;
 //
 
 class Patron;
+//class Library;
 class Command
 {
 
@@ -39,6 +40,7 @@ public:
 
     //  Sets the Command's attributes
     void initialize( Patron * , LibraryItem *);
+   // virtual void initialize(Patron* , LibraryItem*, Library&);
 
     // Executes command logic. To be implemented by child classes
     virtual bool execute() const = 0; 
@@ -49,6 +51,7 @@ public:
     protected:
     LibraryItem *item;  // Pointer to LibraryItem associated with command
     Patron *patron;     // Pointer to Patron associated with command 
+    //Library *LibraryPtr;
     string commandName; // string of command name, eg: Checkout
 
 

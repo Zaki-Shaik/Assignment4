@@ -9,6 +9,10 @@
 #include "libraryitem.h"
 #include "patron.h"
 #include "commandfactory.h"
+#include <map>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 using namespace std;
 
 //---------------------------------------------------------------------------
@@ -40,8 +44,10 @@ private:
 
     LibraryItemFactory * mediaObject;
     CommandFactory * commandObject;
-    set<Patron> patronList;
-    
+    set<char> TypeOfMedia;
+   // set<Patron> patronList;
+   // string is id number
+    map<string, Patron> patronList;
 
 
     // Hash function that maps one mediaType character to a certain 

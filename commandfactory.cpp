@@ -26,7 +26,7 @@ CommandFactory::CommandFactory()
 }
 bool CommandFactory::checkValid(int hashedChar) // checks if command char is valid
 {
-    return (factoryOfCommand[hashedChar] != nullptr);
+    return (hashedChar < sizeOfFactoryCommand && factoryOfCommand[hashedChar] != nullptr);
 }
 
 CommandFactory::~CommandFactory()

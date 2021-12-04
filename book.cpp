@@ -49,12 +49,18 @@ return true;
 bool Book::setData2(ifstream& file)
 {
     string data; 
-    for(int i = 0; i< sizeOfArrayOfSortingPrio - 1; i++ )
+    for(int i = 0; i< sizeOfArrayOfSortingPrio; i++ )
     {   
         file.get();
+        
         getline(file, data, ',');
+        //cout<<"data is "<<data<<endl;
         ArrayOfParameters[i] = data;
        
+    }
+    for (int i = sizeOfArrayOfSortingPrio; i< sizeOfArrayOfParameters-1; i++){
+ArrayOfParameters[i] = "";
+
     }
     getline(file, data); // this goes to the next line
     return true;

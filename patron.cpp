@@ -134,6 +134,11 @@ void Patron::setId(string newID)
     id = newID;
 }
 
+string Patron::getId()
+{
+    return id;
+}
+
 void Patron::addCommandToHistory
     (const Command& command,  LibraryItem* libraryitem) {
 

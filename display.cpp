@@ -11,6 +11,7 @@ Display::~Display()
 }
 bool Display::execute() const
 {
+    cout<<"this ran";
     return true;
 }
 
