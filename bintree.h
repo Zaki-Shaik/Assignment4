@@ -119,7 +119,7 @@ public:
 // displaySideways
 // Preconditions: none
 // Postconditions: displays the tree sidewqays
-    //void displaySideways() const;
+    void displaySideways() const;
 private:
     struct Node 
     {
@@ -139,7 +139,7 @@ private:
 // sidewaysHelper
 // Preconditions: need to passa Node for root of tree and int
 // Postconditions: displays the tree sidewqays
-    //void sidewaysHelper(Node*, int) const;
+    void sidewaysHelper(Node*, int) const;
 //----------------------------------------------------------------------------
 // makeEmptyHelper()
 // Preconditions: need to pass a Node object

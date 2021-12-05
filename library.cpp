@@ -211,7 +211,7 @@ currentPatron = &findIt->second;
                LibraryItem* findCopy;
                
                libraryCollectionFactory[hash(typeOfBook)]->retrieve(*tempCopy, findCopy);
-                //cout << findCopy << endl;
+                //cout <<"findCopy" << findCopy << endl;
                if (findCopy != nullptr){ // copy is found and stored in findCopy, so delete tempCopy
                 cout << "exec" << endl; 
                delete tempCopy;
@@ -290,11 +290,16 @@ ostream & operator<<(ostream & out, const Library &item)
      for (int i = 0; i < item.sizeOfLibraryCollection; i++ )
     {
 
-        if (item.libraryCollectionFactory[i] != nullptr) out<<*item.libraryCollectionFactory[i];
+        if (item.libraryCollectionFactory[i] != nullptr)
+        {
+            out<<*item.libraryCollectionFactory[i];
+            item.libraryCollectionFactory[i]->displaySideways();
+        } 
 
 
 
     }
+    
     return out;
 }
 

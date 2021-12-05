@@ -538,29 +538,29 @@ int start, int end) {
 // displaySideways
 // Preconditions: none
 // Postconditions: displays the tree sidewqays
-// void BinTree::displaySideways() const 
-// {
-//    sidewaysHelper(root, 0);
-// }
+void BinTree::displaySideways() const 
+{
+   sidewaysHelper(root, 0);
+}
 
-//----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // sidewaysHelper
 // Preconditions: need to passa Node for root of tree and int
 // Postconditions: displays the tree sidewqays
-// void BinTree::sidewaysHelper(Node* current, int level) const {
-//    if (current != nullptr) {
-//       level++;
-//       sidewaysHelper(current->right, level);
+void BinTree::sidewaysHelper(Node* current, int level) const {
+   if (current != nullptr) {
+      level++;
+      sidewaysHelper(current->right, level);
 
-//       // indent for readability, same number of spaces per depth level 
-//       for(int i = level; i >= 0; i--) {
-//           cout << "      ";
-//       }
+      // indent for readability, same number of spaces per depth level 
+      for(int i = level; i >= 0; i--) {
+          cout << "      ";
+      }
 
-//       cout << *current->data << endl;        // display information of object
-//       sidewaysHelper(current->left, level);
-//    }
-// }
+      cout << *current->data << endl;        // display information of object
+      sidewaysHelper(current->left, level);
+   }
+}
 
 
 //----------------------------------------------------------------------------

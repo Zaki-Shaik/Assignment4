@@ -34,7 +34,8 @@ LibraryItem::LibraryItem()
 
 bool LibraryItem::operator==(const LibraryItem& rhs) const {
 for (int i = 0; i < sizeOfArrayOfSortingPrio; i++){
-
+//cout<<"1)"<<*ArrayOfSortingPrio[i]<<"SPACE"<<endl;
+//cout<<"2)"<<*(rhs.ArrayOfSortingPrio[i])<<"SPACE"<<endl;
 if (*ArrayOfSortingPrio[i] != *(rhs.ArrayOfSortingPrio[i]))
 return false;
 }

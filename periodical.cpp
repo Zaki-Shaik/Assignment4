@@ -39,23 +39,25 @@ newPeriodical->MaxCopies = 1;
 
 bool Periodical::setData2(ifstream& file){
     file.get();
-    string YearOfPeriodical;
-    getline(file, YearOfPeriodical, ' ');
-    cout<<"Year: "<<YearOfPeriodical<<endl;
-    ArrayOfParameters[2] = YearOfPeriodical;
+    string dataOfFile;
+    getline(file, dataOfFile, ' ');
+    cout<<"Year: "<<dataOfFile<<"SPACE"<<endl;
+    *ArrayOfSortingPrio[0] = dataOfFile;
 
-    string MonthOfPeriodical;
-    getline(file, MonthOfPeriodical, ' ');
-    cout<<"Month: "<<MonthOfPeriodical<<endl;
-    ArrayOfParameters[1] = MonthOfPeriodical;
+    
+    getline(file, dataOfFile, ' ');
+    cout<<"Month: "<<dataOfFile<<"SPACE"<<endl;
+    *ArrayOfSortingPrio[1] = dataOfFile;
 
-    string TitleOfPeriodical;
-    getline(file, TitleOfPeriodical, ',');
-    cout<<"Title: "<<TitleOfPeriodical<<endl;
-    ArrayOfParameters[0] = TitleOfPeriodical;
+    
+    getline(file, dataOfFile, ',');
+    cout<<"Title: "<<dataOfFile<<"SPACE"<<endl;
+    *ArrayOfSortingPrio[2] = dataOfFile;
  initialize = true;
- string clearLine;
- getline(file, clearLine);
+ 
+ 
+ getline(file, dataOfFile);
+
     return true;
 
 
@@ -71,6 +73,7 @@ checkEOL = file.get();
 //if (checkEOL == '\n') return false;
 getline(file, TitleOfPeriodical, ',');
 //if (TitleOfPeriodical.size() == 0) return false;
+
 ArrayOfParameters[0] = TitleOfPeriodical;
 
 // this assumes that rest of line is valid
