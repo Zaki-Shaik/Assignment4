@@ -75,7 +75,7 @@ getline(file, TitleOfPeriodical, ',');
 //if (TitleOfPeriodical.size() == 0) return false;
 
 ArrayOfParameters[0] = TitleOfPeriodical;
-
+   
 // this assumes that rest of line is valid
     
 
@@ -89,9 +89,13 @@ file.get();
 
 
 string YearOfPeriodical;
-getline(file, YearOfPeriodical);
+
+file>>YearOfPeriodical;
+
 ArrayOfParameters[2] = YearOfPeriodical;
     initialize = true;
+    string clearLine;
+    getline(file, clearLine);
     return true;
     
 }

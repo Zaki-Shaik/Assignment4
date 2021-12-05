@@ -131,14 +131,14 @@ Library::~Library(){
          }
 
          file >> command;
-        cout<<"here1"<<endl;
+        //cout<<"here1"<<endl;
          if (commandObject -> checkValid(hash(command))) {
              // THIS INTO ELSE
              char checkEOL;
 
              checkEOL = file.get();
-             cout<<"COMMAND: "<<command<<endl;
-             cout<<"CHECK EOL"<<checkEOL<<"SPACE"<<endl;
+             //cout<<"COMMAND: "<<command<<endl;
+             //cout<<"CHECK EOL"<<checkEOL<<"SPACE"<<endl;
              //cout << checkEOL << endl;
              if (checkEOL == '\n' || file.eof()) {
                  cout<<"QWEQWEQWEQWE"<<endl;
@@ -153,7 +153,7 @@ Library::~Library(){
              
              string IdNumber;
              file>>IdNumber;
-             cout<<"IdNumber: "<< IdNumber<<endl;
+             //cout<<"IdNumber: "<< IdNumber<<endl;
             // first check IDnumberchar length
             // then check each index of string to [3] using isdigit()
             
@@ -249,11 +249,15 @@ currentPatron = &findIt->second;
             else{
             string clear;
              getline(file, clear);  
+         
+
             }
              }
              else{
              string clear;
-             getline(file, clear);                 
+             getline(file, clear);  
+             
+               
              }
 
              }
@@ -261,13 +265,13 @@ currentPatron = &findIt->second;
                  
              string clear;
              getline(file, clear);
-
+             cout<<"There is no Patron with ID: " << IdNumber<<endl;
               }
                   
              } else {
                   string clear;
              getline(file, clear);
-
+             
 
              }
              // create a library item and find it in the bintree
@@ -293,7 +297,7 @@ ostream & operator<<(ostream & out, const Library &item)
         if (item.libraryCollectionFactory[i] != nullptr)
         {
             out<<*item.libraryCollectionFactory[i];
-            item.libraryCollectionFactory[i]->displaySideways();
+            //item.libraryCollectionFactory[i]->displaySideways();
         } 
 
 
