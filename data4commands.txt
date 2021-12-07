@@ -33,6 +33,7 @@ C 3000 C H Danny Dunn & the Homework Machine, Williams Jay,
 C 5000 C H Smokey, Peet Bill,
 C 6000 P H 2009 7 Sigart Bulletin,
 C 5000 C H Yertle the Turtle, Seuss Dr.,
+R 5000 C H Yertle the Turtle, Seuss Dr.,
 C 8000 F H Kerouac Jack, The Dharma Bums,
 C 2000 F H Pirsig Robert, Zen & the Art of Motorcycle Maint,
 C 5000 F H Higgins Colin, Harold and Maude,
@@ -57,4 +58,4 @@ H 1000
 H 1111
 H 5000
 H 8888
-H 1234
+H 7777

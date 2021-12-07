@@ -41,17 +41,17 @@ bool Periodical::setData2(ifstream& file){
     file.get();
     string dataOfFile;
     getline(file, dataOfFile, ' ');
-    cout<<"Year: "<<dataOfFile<<"SPACE"<<endl;
+    //cout<<"Year: "<<dataOfFile<<"SPACE"<<endl;
     *ArrayOfSortingPrio[0] = dataOfFile;
 
     
     getline(file, dataOfFile, ' ');
-    cout<<"Month: "<<dataOfFile<<"SPACE"<<endl;
+    //cout<<"Month: "<<dataOfFile<<"SPACE"<<endl;
     *ArrayOfSortingPrio[1] = dataOfFile;
 
     
     getline(file, dataOfFile, ',');
-    cout<<"Title: "<<dataOfFile<<"SPACE"<<endl;
+    //cout<<"Title: "<<dataOfFile<<"SPACE"<<endl;
     *ArrayOfSortingPrio[2] = dataOfFile;
  initialize = true;
  

@@ -14,7 +14,7 @@ currentIndexOfCheckedOutBooks = 0;
 sizeOfCheckedOutBooks = 20;
     
 }
-void Patron::returnBook(const Command& command, LibraryItem* libraryitem){
+bool Patron::returnBook(const Command& command, LibraryItem* libraryitem){
 // dereference library items to compare them with ==
 for (int i =0; i < currentIndexOfCheckedOutBooks; i++){
 if (*libraryitem == *CheckedOutBooks[i]){
@@ -34,13 +34,13 @@ CheckedOutBooks[currentIndexOfCheckedOutBooks] = nullptr;
 currentPtr->setCopiesLeft(libraryitem->getCopiesLeft() + 1);
 // 3) decrement the current index
 currentIndexOfCheckedOutBooks--;
-    return;
+    return true;
 }
-
+    
 }
 
 cout<<*libraryitem<<" not returned";
-
+return false;
 }
 
 Patron::Patron(const Patron& pat)

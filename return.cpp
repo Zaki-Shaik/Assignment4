@@ -18,8 +18,12 @@ bool Return::execute() const
 if (copiesLeft == item->getMaxCopies() ) return false;
 
     item->setCopiesLeft(copiesLeft + 1);
-    patron->returnBook(*this, item);
-    patron->addCommandToHistory(*this, item);
+    if(patron->returnBook(*this, item))
+    {
+        patron->addCommandToHistory(*this, item);
+    }
+    
+   
     return true;
 }
 

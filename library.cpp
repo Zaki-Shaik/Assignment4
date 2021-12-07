@@ -140,7 +140,10 @@ Library::~Library(){
              //cout<<"COMMAND: "<<command<<endl;
              //cout<<"CHECK EOL"<<checkEOL<<"SPACE"<<endl;
              //cout << checkEOL << endl;
-             if (checkEOL == '\n' || file.eof()) {
+
+             if (file.eof() || checkEOL == '\n' ){           
+             // old version commented out:
+            // if (checkEOL == '\n' || file.eof()) {
                  cout<<"QWEQWEQWEQWE"<<endl;
                  temp = commandObject->createCommand(hash(command));
                  temp->initialize(currentPatron, currentMediaObj);
@@ -166,6 +169,7 @@ Library::~Library(){
               && patronList.find(IdNumber)->first == IdNumber           
               ) { // string is valid
             
+            // we don't have eol check before we read this character since line 155
 char EOLsecondCheck;
  EOLsecondCheck = file.get();
               if (EOLsecondCheck == '\n' || file.eof()) {
@@ -213,7 +217,7 @@ currentPatron = &findIt->second;
                libraryCollectionFactory[hash(typeOfBook)]->retrieve(*tempCopy, findCopy);
                 //cout <<"findCopy" << findCopy << endl;
                if (findCopy != nullptr){ // copy is found and stored in findCopy, so delete tempCopy
-                cout << "exec" << endl; 
+                //cout << "exec" << endl; 
                delete tempCopy;
                
                // string IdNumber;

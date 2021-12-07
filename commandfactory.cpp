@@ -1,5 +1,10 @@
 #include "commandfactory.h"
-
+/*
+// #include "showhistory.h"
+// #include "checkout.h"
+// #include "return.h"
+// #include "display.h"
+*/
 CommandFactory::CommandFactory()
 {
     factoryOfCommand = new Command*[18];

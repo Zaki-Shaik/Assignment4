@@ -29,7 +29,8 @@ using namespace std;
 //  -- All library items, patrons and commands to be processed are initialized 
 //  -- from external files
 //
-
+//class Command;
+//class Patron;
 class Library
 {
     friend ostream & operator<<(ostream &, const Library &);
