@@ -68,6 +68,12 @@ return ( !(*this == rhs) ) && ( !(*this < rhs) );
 }
 
 
+int LibraryItem::getSizeOfArrayParametersArray()const{
+
+return sizeOfArrayOfParameters;
+    
+}
+
 LibraryItem::~LibraryItem()
 {
     // research how subclasses inherit destructors
@@ -126,8 +132,8 @@ string LibraryItem::atArrayIndex(int atIndex)
 ostream & operator<<(ostream & out, const LibraryItem & item)
 {
     int sizeOfItemParameters = item.sizeOfArrayOfParameters;
+    out<< item.CopiesLeft<< "  ";
     out<<item.ArrayOfParameters[0];
-
     for (int i = 1; i < sizeOfItemParameters; i++){
        out<<' ';
        out<<item.ArrayOfParameters[i];

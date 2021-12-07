@@ -1,5 +1,5 @@
 #include "patron.h"
-
+#include <iomanip>
 Patron::Patron()
 {
 // LibraryItem** ItemHistory;
@@ -39,7 +39,7 @@ currentIndexOfCheckedOutBooks--;
     
 }
 
-cout<<*libraryitem<<" not returned";
+cout<<*libraryitem<<" not returned"<< endl;
 return false;
 }
 
@@ -203,7 +203,7 @@ for (int i = 0; i< sizeOfCheckedOutBooks; i++){
 void Patron::getHistory() const
 {
    
-    cout<< id << setw(10) << lastName << ", " << firstName << ":" << endl; 
+    cout<< id << setw(8) << lastName << ", " << firstName << ":" << endl; 
    
     for(int i = 0; i < currentIndexOfItemHistory; i++)
     {
@@ -213,9 +213,11 @@ void Patron::getHistory() const
         }
         else
         {
-            cout<< CommandHistory.at(i) << "   " << *ItemHistory[i] << endl;
+            cout<< CommandHistory.at(i) << "   " << right << *ItemHistory[i];
         }
     }
+
+    cout<<endl;
    
 }
 

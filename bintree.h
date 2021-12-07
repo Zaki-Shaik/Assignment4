@@ -120,7 +120,13 @@ public:
 // Preconditions: none
 // Postconditions: displays the tree sidewqays
     void displaySideways() const;
+    int getSizeOfArray() const;
+    int getSizeOfIndex(int) const;
+   // void OutputWithFormat(int*&) const;
 private:
+
+int sizeOfArray;
+int* maxSizeOfEachIndexOfArrayOfParameter;
     struct Node 
     {
     
@@ -130,6 +136,7 @@ private:
 
     };
     Node * root;
+   // void OutputWithFormatHelper(int*& ,const Node*)const;
 //----------------------------------------------------------------------------
 // inorderHelper
 // Preconditions: need to pass a Node object for root of tree

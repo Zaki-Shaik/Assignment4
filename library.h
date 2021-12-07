@@ -31,6 +31,7 @@ using namespace std;
 //
 //class Command;
 //class Patron;
+
 class Library
 {
     friend ostream & operator<<(ostream &, const Library &);
@@ -81,7 +82,7 @@ public:
 
     // Reads library items from file and stores them in internal collection
     void initializeLibraryItems(ifstream& file);
-
+    void outputAllItems();
     // Reads commands from file and execute them sequentially 
     void processCommands(ifstream& file);
 

@@ -144,9 +144,8 @@ Library::~Library(){
              if (file.eof() || checkEOL == '\n' ){           
              // old version commented out:
             // if (checkEOL == '\n' || file.eof()) {
-                 cout<<"QWEQWEQWEQWE"<<endl;
                  temp = commandObject->createCommand(hash(command));
-                 temp->initialize(currentPatron, currentMediaObj);
+                 temp->initialize(currentPatron, currentMediaObj, this);
                  temp->execute();
                  
                 continue;
@@ -310,7 +309,22 @@ ostream & operator<<(ostream & out, const Library &item)
     
     return out;
 }
+void Library::outputAllItems(){
 
+     for (int i = 0; i < sizeOfLibraryCollection; i++ )
+    {
+
+        if (libraryCollectionFactory[i] != nullptr)
+        {
+            cout<<libraryCollectionFactory[i];
+            //item.libraryCollectionFactory[i]->displaySideways();
+        } 
+
+
+
+    }
+
+}
 
 void Library::processPatrons(ifstream& file)
 {

@@ -24,7 +24,7 @@ bool Checkout::execute() const
     } 
     else
     {
-        cout << "LibraryItem is not in Stock";
+        cout << "LibraryItem is not in Stock"<<endl;
         return false;
     }
 }

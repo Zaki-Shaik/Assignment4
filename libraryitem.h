@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
+
 using namespace std;
 
 class LibraryItem
@@ -54,6 +55,7 @@ class LibraryItem
         virtual LibraryItem* createIt() const = 0;
         virtual bool setData(ifstream& file) = 0;
         virtual bool setData2(ifstream& file) = 0;
+        virtual int getSizeOfArrayParametersArray() const;
         //http://courses.washington.edu/css343/zander/Labs/Book/output.txt
         // checks if initialize is true -> output contents of Array
         // Output amount of copies left at the start

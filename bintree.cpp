@@ -28,6 +28,8 @@
 BinTree::BinTree()
 {
     root = nullptr;
+    maxSizeOfEachIndexOfArrayOfParameter = nullptr;
+    sizeOfArray = 0;
 }
 
 //----------------------------------------------------------------------------
@@ -51,7 +53,14 @@ BinTree::~BinTree()
   
     makeEmpty();
     root = nullptr;
-    
+    delete[] maxSizeOfEachIndexOfArrayOfParameter;
+    /*
+        int getSizeOfArray() const;
+    int getSizeOfIndex(int) const;
+private:
+int sizeOfArray;
+int* maxSizeOfEachIndexOfArrayOfParameter;
+    */
 }
 //----------------------------------------------------------------------------
 // isEmpty()
@@ -194,6 +203,15 @@ bool BinTree::operator!=(const BinTree & rTree) const
 
 
 
+int BinTree::getSizeOfArray() const{
+
+return sizeOfArray;
+}
+
+int BinTree::getSizeOfIndex(int currIndex) const{
+return maxSizeOfEachIndexOfArrayOfParameter[currIndex];
+
+}
 //----------------------------------------------------------------------------
 // insert
 // Preconditions: need to pass a NodeData Object
@@ -210,10 +228,33 @@ bool BinTree::insert(LibraryItem*& value)
     ptr->data = value;
     
     ptr->left = ptr->right = nullptr;
+    /*
+    int getSizeOfArray() const;
+    int getSizeOfIndex(int) const;
+
+int sizeOfArray;
+int* maxSizeOfEachIndexOfArrayOfParameter;
+    */
+    
     if (isEmpty()) {
+// add here
+       maxSizeOfEachIndexOfArrayOfParameter = new int[value->getSizeOfArrayParametersArray()];
+       sizeOfArray = value->getSizeOfArrayParametersArray();
+       for (int i = 0; i < sizeOfArray; i++){
+        maxSizeOfEachIndexOfArrayOfParameter[i] = value->atArrayIndex(i).size();
+       }
       root = ptr;
     }
-   else {
+   else {  
+       // add here
+for (int i = 0; i < sizeOfArray; i++){
+    if (value->atArrayIndex(i).size() > maxSizeOfEachIndexOfArrayOfParameter[i]){
+
+        maxSizeOfEachIndexOfArrayOfParameter[i] = value->atArrayIndex(i).size();
+    }
+      
+       }
+       //
       Node* current = root;
       bool inserted = false;
 
